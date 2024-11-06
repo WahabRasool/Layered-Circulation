@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Afacad:wght@700&display=swap");
+
+@property --a {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: -1turn;
+}
+body {
+  margin: 0;
+  background: #333;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.round {
+  background: #f2da13;
+  width: min(60vw, 60vh);
+  height: min(60vw, 60vh);
+  position: relative;
+  border-radius: 50%;
+}
+.lower,
+.upper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  isolation: isolate;
+  mix-blend-mode: multiply;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+.lower {
+  background: conic-gradient(
+    from -0.25turn,
+    rgb(255 255 255 / 1) calc(var(--a) - 1turn),
+    rgb(255 255 255 / 1) calc(var(--a) - 0.3turn),
+    rgb(255 255 255 / 0) calc(var(--a) + 0.7turn),
+    rgb(255 255 255 / 0) calc(var(--a) + 1turn),
+    rgb(255 255 255 / 1) calc(var(--a) + 1turn)
+  );
+  animation: fade 10s linear infinite;
+}
+.upper {
+  background: conic-gradient(
+    from 0.25turn,
+    rgb(255 255 255 / 1) calc(var(--a) - 1turn),
+    rgb(255 255 255 / 1) calc(var(--a) - 0.3turn),
+    rgb(255 255 255 / 0) calc(var(--a) + 0.7turn),
+    rgb(255 255 255 / 0) calc(var(--a) + 1turn),
+    rgb(255 255 255 / 1) calc(var(--a) + 1turn)
+  );
+  animation: fade 10s 5s linear infinite;
+}
+
+text {
+  font-size: 20px;
+  font-family: Afacad, sans-serif;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.lower text {
+  fill: #c63441;
+}
+.upper text {
+  fill: #1a911a;
+}
+
+@keyframes fade {
+  from {
+    --a: -1turn;
+  }
+  to {
+    --a: 1turn;
+  }
+}
